@@ -10,5 +10,8 @@ namespace myBlog.API.Data
         }
         
         public DbSet<Value> Values { get; set; }
+        
+        //add migration to database
+        public DbSet<User> Users { get; set; }
     }
 }
