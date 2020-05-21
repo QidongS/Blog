@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Blog</a>
+
+  
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Topics </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="#">Projects</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="#">Musics</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="#">Games</a>
+        </li>
+        
+        
+      </ul>
+      <ng-container *ngIf="!loggedIn(); else ele">
+        <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='http://www.example.com'" type="button">Login</button>
+      </ng-container>
+      <ng-template #ele>
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()" type="button">Logout</button>
+      </ng-template>
+    
+
+     
+  </nav>

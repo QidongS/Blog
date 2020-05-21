@@ -1,0 +1,23 @@
+<div *ngIf="!loggedIn()">
+<body class="text-center">
+<form  #loginForm="ngForm" class="form-signin" action="dashboard.html"  method="post" (ngSubmit)="login()">
+	<img class="mb-4"  src="assets/img/soda.svg" alt="" width="72" height="72">
+	<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+	<!--notify bad login-->
+	<!-- <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p> -->
+	<label class="sr-only" >Username</label>
+	<input type="text"  name="username" class="form-control" placeholder="Username" [(ngModel)]="model.username"  required autofocus="">
+	<label class="sr-only" >Password</label>
+	<input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="model.password" required>
+	<div class="checkbox mb-3">
+		<label>      
+            <input type="checkbox" value="remember-me"/> 
+            <label for="remember">Remember Me</label>
+		</label>
+	</div>
+	<!--allow switch between chinese and english-->
+	<button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block" type="submit">Next</button>
+</form>
+</body>
+
+</div>
