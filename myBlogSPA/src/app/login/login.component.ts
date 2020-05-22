@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { AlertifyService } from '../services/alertify.service';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,14 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  @Input() loginMode: boolean;
+
   model: any = {};
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private alertifyService : AlertifyService
+    ) { }
 
   ngOnInit() {
   }
@@ -18,19 +24,24 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.authService.login(this.model).subscribe(next => {
-      console.log('Logged in successfully');
-    }, error=>{
-      console.log("Failed");
-    })
+      this.alertifyService.success('Login Success!');
+    }, error => {
+      this.alertifyService.error('Login Error');
+    });
   }
 
   loggedIn(){
-    const token = localStorage.getItem('token');
-    return !!token;
+    var status = this.authService.loggedIn();
+    return this.authService.loggedIn();
   }
 
   logout(){
     localStorage.removeItem('token');
     console.log('logged out');
   }
+
+  // toggledLogin(){
+  //   const token = localStorage.getItem('token');
+  //   return this.loginMode && !(!!token);
+  // }
 }
