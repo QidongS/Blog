@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
 
   <div class="container">
-    <a class="navbar-brand" href="#">{{ (this.authService.decodedToken?.unique_name | titlecase) || "MyBlog"}}</a>
+    <a class="navbar-brand" [routerLink]="['/home']"> {{ (this.authService.decodedToken?.unique_name | titlecase) || "MyBlog"}}</a>
 
     <!-- <ng-container *ngIf="!loggedIn(); else elseTemplate">
       <a class="navbar-brand" href="#">MyBlog</a>
@@ -10,11 +10,9 @@
       <a class="navbar-brand" href="#">{{this.authService.decodedToken?.unique_name}}</a>
     </ng-template> -->
     
-
-  
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Topics </a>
+        <li class="nav-item router" [routerLinkActive]>
+          <a class="nav-link" [routerLink]="['/topics']">Topics </a>
         </li>
         <li class="nav-item ">
           <a class="nav-link" href="#">Projects</a>
@@ -29,10 +27,10 @@
         
       </ul>
       <ng-container *ngIf="!loggedIn(); else ele">
-        <button class="btn btn-outline-success btn-sm" (click)="loginToggle()" type="button">Login</button>
+        <button class="btn btn-outline-success btn-sm" [routerLink]="['/login']" type="button">Login</button>
       </ng-container>
-      <ng-template #ele>
-        <button class="btn btn-outline-success" (click)="logout()" type="button">Logout</button>
+      <ng-template #ele [routerLinkActive]>
+        <button class="btn btn-outline-success" (click)="logout()" [routerLink]="['/home']" type="button">Logout</button>
       </ng-template>
 
   </div>

@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
     return status;
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     console.log('logged out');
   }
