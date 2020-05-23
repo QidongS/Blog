@@ -7,15 +7,16 @@ import { MessagesComponent } from './messages/messages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { TopicsComponent } from './topics/topics.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home'},
     { path: 'home', component: HomeComponent},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
-    { path: 'messages', component: MessagesComponent},
+    { path: 'messages', component: MessagesComponent, canActivate: [AuthGuard]},
     { path: 'register', component: RegisterComponent},
-    { path: 'profile', component: ProfileComponent},
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
     { path: 'topics', component: TopicsComponent},
     { path: '**',  pathMatch: 'full', redirectTo: 'home' }
 

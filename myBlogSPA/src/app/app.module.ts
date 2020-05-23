@@ -7,7 +7,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
 import { NavComponent } from './nav/nav.component';
@@ -20,6 +19,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AppRoutingModule } from './routes';
 import { TopicsComponent } from './topics/topics.component';
+import { FooterComponent } from './core/footer/footer.component';
 
 @NgModule({
    declarations: [
@@ -31,7 +31,8 @@ import { TopicsComponent } from './topics/topics.component';
       LoginComponent,
       MessagesComponent,
       ProfileComponent,
-      TopicsComponent
+      TopicsComponent,
+      FooterComponent
    ],
    imports: [
       BrowserModule,

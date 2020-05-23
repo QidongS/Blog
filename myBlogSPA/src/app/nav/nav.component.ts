@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {AuthService} from '../services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -11,7 +12,8 @@ export class NavComponent implements OnInit {
   loginMode = false;
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -28,6 +30,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
+    this.router.navigate(['/topics']);
     console.log('logged out');
   }
 
@@ -36,6 +39,6 @@ export class NavComponent implements OnInit {
     this.ouputLoginMode.emit(this.loginMode);
   }
 
-  
+
 
 }
