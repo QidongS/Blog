@@ -11,11 +11,11 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 export class AppComponent implements OnInit{
   // @ViewChild('sidenav', {static: false}) sidenavRef: ElementRef;
 
-  snavStatus : any;
+  snavStatus: any;
   jwtHelper = new JwtHelperService();
 
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(){
     this.snavStatus = false;

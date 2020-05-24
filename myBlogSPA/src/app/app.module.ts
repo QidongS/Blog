@@ -16,7 +16,6 @@ import {
 
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
-import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './services/auth.service';
@@ -27,19 +26,22 @@ import { ProfileComponent } from './profile/profile.component';
 import { AppRoutingModule } from './routes';
 import { TopicsComponent } from './topics/topics.component';
 import { FooterComponent } from './core/footer/footer.component';
+import { LayoutComponent } from './core/layout/layout.component';
+import { HeaderComponent } from './core/header/header.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       ValueComponent,
-      NavComponent,
       HomeComponent,
       RegisterComponent,
       LoginComponent,
       MessagesComponent,
       ProfileComponent,
       TopicsComponent,
-      FooterComponent
+      FooterComponent,
+      LayoutComponent,
+      HeaderComponent
    ],
    imports: [
       BrowserModule,
@@ -58,7 +60,6 @@ import { FooterComponent } from './core/footer/footer.component';
    ],
    providers: [
       AuthService,
-      NavComponent,
       AlertifyService
    ],
    bootstrap: [
