@@ -28,6 +28,9 @@ import { TopicsComponent } from './topics/topics.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { LayoutComponent } from './core/layout/layout.component';
 import { HeaderComponent } from './core/header/header.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
    declarations: [
@@ -48,6 +51,7 @@ import { HeaderComponent } from './core/header/header.component';
       HttpClientModule,
       FormsModule,
       BsDropdownModule.forRoot(),
+      CollapseModule.forRoot(),
       CarouselModule.forRoot(),
       BrowserAnimationsModule,
       AppRoutingModule,
@@ -56,7 +60,8 @@ import { HeaderComponent } from './core/header/header.component';
       MatToolbarModule,
       MatListModule,
       MatButtonModule,
-      MatMenuModule
+      MatMenuModule,
+      NgbModule
    ],
    providers: [
       AuthService,

@@ -1,45 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark  bg-dark">
-
-    <div class="container">
-      <button mat-icon-button aria-label='Menu' (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      
-      <a class="navbar-brand" [routerLink]="['/home']"> {{ (this.authService.decodedToken?.unique_name | titlecase) || "MyBlog"}}</a>
-  
-      
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item router" [routerLinkActive]>
-            <a class="nav-link" [routerLink]="['/topics']">Topics </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">Projects</a>
-          </li>
-          <li class="nav-item ">
-              <a class="nav-link" href="#">Musics</a>
-          </li>
-          <li class="nav-item ">
-              <a class="nav-link" href="#">Games</a>
-          </li>
-          <li class="nav-item " [routerLinkActive]>
-            <a class="nav-link" [routerLink]="['/messages']">Messaages</a>
-          </li>
-          
-          
-        </ul>
-        <ng-container *ngIf="!loggedIn(); else ele">
-          <button class="btn btn-outline-success btn-sm" [routerLink]="['/login']" type="button">Login</button>
-        </ng-container>
-        <ng-template #ele [routerLinkActive]>
-          <button class="btn btn-outline-success" (click)="logout()" [routerLink]="['/home']" type="button">Logout</button>
-        </ng-template>
-  
-    </div>
-  
-       
-</nav>
-
-<mat-sidenav-container>
+<mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav [mode]="'side'" [fixedInViewport]="true">
         <mat-nav-list class="nav-list" >
             <a mat-list-item [routerLink]="['/profile']">Profile</a>
@@ -48,6 +7,49 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
+      <nav class="navbar navbar-expand-md navbar-dark  bg-dark" >
+
+        <div class="navbar-header">
+          
+          <button mat-icon-button>
+            <i class="material-icons" (click)="sidenav.toggle()">people_outline</i>
+          </button>
+          <a class="navbar-brand"  >MyBlog</a>
+          <button mat-icon-button class="navbar-toggler brand" 
+           (click)="isCollapsed = !isCollapsed" aria-expanded="false">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+      
+        <div class="collapse navbar-collapse" [ngbCollapse]=isCollapsed>
+          <ul class="nav navbar-nav mr-auto">
+            <li class="nav-item router" [routerLinkActive]>
+              <a class="nav-link" [routerLink]="['/topics']">Topics </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="#">Projects</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">Musics</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">Games</a>
+            </li>
+            <li class="nav-item " [routerLinkActive]>
+              <a class="nav-link" [routerLink]="['/messages']">Messaages</a>
+            </li>
+          </ul>
+          
+          <ng-container *ngIf="!loggedIn(); else ele">
+            <button class="btn btn-outline-success btn-sm" [routerLink]="['/login']" type="button">Login</button>
+          </ng-container>
+          <ng-template #ele [routerLinkActive]>
+            <button class="btn btn-outline-success" (click)="logout()" [routerLink]="['/home']" type="button">Logout</button>
+          </ng-template>
+      
+        </div>
+             
+      </nav>
         <div class = "router-outlet">
     
           <router-outlet></router-outlet>
