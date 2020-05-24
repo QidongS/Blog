@@ -1,2 +1,21 @@
-<app-nav (ouputLoginMode)="getLoginMode($event)"></app-nav>
+<app-nav ></app-nav>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav [mode]="'side'" [fixedInViewport]="true">
+        <mat-nav-list class="nav-list" >
+            <a mat-list-item [routerLink]="['/profile']">Profile</a>
+            <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class = "router-outlet">
+    
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
+</mat-sidenav-container>
+
 <router-outlet></router-outlet>
+
+<mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+

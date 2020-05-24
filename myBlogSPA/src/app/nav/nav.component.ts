@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
-  @Output() ouputLoginMode = new EventEmitter<boolean>();
-  loginMode = false;
+  @Output() snavOutput = new EventEmitter<boolean>();
+  snavStatus = false;
 
   constructor(
     public authService: AuthService,
@@ -21,10 +21,6 @@ export class NavComponent implements OnInit {
 
   loggedIn() {
     const status = this.authService.loggedIn();
-    if (status) {
-      this.loginMode = false;
-      this.ouputLoginMode.emit(this.loginMode);
-    }
     return status;
   }
 
@@ -34,9 +30,10 @@ export class NavComponent implements OnInit {
     console.log('logged out');
   }
 
-  loginToggle(){
-    this.loginMode = true;
-    this.ouputLoginMode.emit(this.loginMode);
+
+  snavtoggle(){
+    this.snavStatus = !this.snavStatus;
+    this.snavOutput.emit(this.snavStatus);
   }
 
 

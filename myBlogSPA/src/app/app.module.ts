@@ -5,7 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {
+   MatSidenavModule,
+   MatIconModule,
+   MatToolbarModule,
+   MatListModule,
+   MatMenuModule,
+   MatButtonModule
+ } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
@@ -41,7 +48,13 @@ import { FooterComponent } from './core/footer/footer.component';
       BsDropdownModule.forRoot(),
       CarouselModule.forRoot(),
       BrowserAnimationsModule,
-      AppRoutingModule
+      AppRoutingModule,
+      MatSidenavModule,
+      MatIconModule,
+      MatToolbarModule,
+      MatListModule,
+      MatButtonModule,
+      MatMenuModule
    ],
    providers: [
       AuthService,
