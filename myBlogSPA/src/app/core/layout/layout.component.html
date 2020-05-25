@@ -7,6 +7,8 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
+
+      <!-- nav -->
       <nav class="navbar navbar-expand-md navbar-dark  bg-dark" >
 
         <div class="navbar-header">
@@ -14,7 +16,7 @@
           <button mat-icon-button>
             <i class="material-icons" (click)="sidenav.toggle()">people_outline</i>
           </button>
-          <a class="navbar-brand"  >MyBlog</a>
+          <a class="navbar-brand" [routerLink]="['/home']" >{{name | titlecase}}</a>
           <button mat-icon-button class="navbar-toggler brand" 
            (click)="isCollapsed = !isCollapsed" aria-expanded="false">
             <mat-icon>menu</mat-icon>
@@ -50,6 +52,24 @@
         </div>
              
       </nav>
+
+
+
+      <!-- masthead  -->
+      <!-- <header calss=masthead style="background-image: url(https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg);">Header</header> -->
+
+      <ngb-carousel *ngIf="images">
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[0]" alt="Random first slide">
+          </div>
+          <div class="carousel-caption">
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+
         <div class = "router-outlet">
     
           <router-outlet></router-outlet>

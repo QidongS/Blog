@@ -10,12 +10,7 @@
 	<input type="text"  name="username" class="form-control" placeholder="Username" [(ngModel)]="model.username"  required autofocus="">
 	<label class="sr-only" >Password</label>
 	<input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="model.password" required>
-	<div class="checkbox mb-3">
-		<label>
-            <input type="checkbox" value="remember-me"/> 
-            <label for="remember">Remember Me</label>
-		</label>
-	</div>
+
 	<!--allow switch between chinese and english-->
 	<button [disabled]="!registerForm.valid" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>

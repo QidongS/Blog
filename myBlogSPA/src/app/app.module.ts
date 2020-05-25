@@ -11,7 +11,9 @@ import {
    MatToolbarModule,
    MatListModule,
    MatMenuModule,
-   MatButtonModule
+   MatButtonModule,
+   MatCheckboxModule
+
  } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -29,8 +31,8 @@ import { FooterComponent } from './core/footer/footer.component';
 import { LayoutComponent } from './core/layout/layout.component';
 import { HeaderComponent } from './core/header/header.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
    declarations: [
@@ -61,7 +63,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
       MatListModule,
       MatButtonModule,
       MatMenuModule,
+      MatCheckboxModule,
       NgbModule
+      
    ],
    providers: [
       AuthService,

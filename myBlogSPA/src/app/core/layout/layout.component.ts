@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
+import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-layout',
@@ -9,25 +10,45 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
 
+  images: any;
+  // images = [
+  //   'https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg'
+  // ];
   isCollapsed = true;
-  
+  name: string;
+
   constructor(
     public authService: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private config: NgbCarouselConfig
+  ) {
+    config.interval = 2000;
+    config.wrap = true;
+    config.pauseOnHover = false;
+  }
 
   ngOnInit() {
+    this.name = 'Myblog';
+
   }
 
   loggedIn() {
     const status = this.authService.loggedIn();
+    if(status){
+      this.name = this.authService.decodedToken.unique_name;
+    }
     return status;
   }
 
   logout() {
     localStorage.removeItem('token');
+    this.name = 'Myblog';
     this.router.navigate(['/topics']);
     console.log('logged out');
+  }
+
+  getName(){
+    return this.name;
   }
 
 }
