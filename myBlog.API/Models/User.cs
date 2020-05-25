@@ -1,3 +1,4 @@
+using System;
 namespace myBlog.API.Models
 {
     public class User
@@ -9,6 +10,14 @@ namespace myBlog.API.Models
 
         public byte[] PasswordSalt{get;set;}
 
+        public DateTime Created {get; set;}
 
+        public string email { get; set;}
+
+        public string bio { get; set; }
+
+        public int level {get; set;}
+
+        public string avatar {get; set;}
     }
 }

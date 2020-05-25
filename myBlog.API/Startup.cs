@@ -18,7 +18,7 @@ using myBlog.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-
+using AutoMapper;
 namespace myBlog.API
 {
     public class Startup
@@ -35,9 +35,11 @@ namespace myBlog.API
         {
             //specify default connection defined in appsettings.json
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddCors();
+            services.AddAutoMapper(typeof(UserInfo).Assembly);
             services.AddScoped<IAuthRepository,AuthRepository>();
+            services.AddScoped<IUserInfo,UserInfo>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
                 options.TokenValidationParameters = new TokenValidationParameters{
                     ValidateIssuerSigningKey = true,

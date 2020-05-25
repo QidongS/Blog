@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using myBlog.API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +41,9 @@ namespace myBlog.API.Data
             createPass(password, out hashed, out salt);
             user.PasswordHash = hashed;
             user.PasswordSalt = salt;
+            user.Created = DateTime.Now;
+            user.level = 1;
+
 
             await context.Users.AddAsync(user);
             await context.SaveChangesAsync();
