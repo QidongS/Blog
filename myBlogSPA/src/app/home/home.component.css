@@ -5,6 +5,17 @@
     max-width: 100%;
     max-height: 100%;
 	display: block;
-	margin: 0;
-	border-bottom:dotted 1px #6d6d6d;
+    margin: 0;
+    border-top:solid 1px #6d6d6d;
+
+}
+
+.carousel-caption h3{
+    font-family: Garamond;
+    color: gray;
+}
+
+.carousel-caption p{
+    font-family: Garamond;
+    color: gray;
 }
