@@ -15,6 +15,8 @@ import {
    MatCheckboxModule
 
  } from '@angular/material';
+import { JwtModule } from '@auth0/angular-jwt';
+
 
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
@@ -33,6 +35,10 @@ import { HeaderComponent } from './core/header/header.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
+
+export function tokenFetcher(){
+   return localStorage.getItem('token');
+}
 
 @NgModule({
    declarations: [
@@ -64,8 +70,14 @@ import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
       MatButtonModule,
       MatMenuModule,
       MatCheckboxModule,
-      NgbModule
-      
+      NgbModule,
+      JwtModule.forRoot({
+         config:{
+            tokenGetter: tokenFetcher,
+            whitelistedDomains: ['localhost:5000'],
+            blacklistedRoutes: ['localhost:5000/api/auth']
+         }
+      })
    ],
    providers: [
       AuthService,

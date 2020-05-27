@@ -10,21 +10,15 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 })
 export class LayoutComponent implements OnInit {
 
-  images: any;
-  // images = [
-  //   'https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg'
-  // ];
+
   isCollapsed = true;
   name: string;
 
   constructor(
     public authService: AuthService,
     private router: Router,
-    private config: NgbCarouselConfig
   ) {
-    config.interval = 2000;
-    config.wrap = true;
-    config.pauseOnHover = false;
+
   }
 
   ngOnInit() {

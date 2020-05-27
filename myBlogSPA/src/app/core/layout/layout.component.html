@@ -51,29 +51,19 @@
       
         </div>
              
-      </nav>
+    </nav>
 
 
 
       <!-- masthead  -->
-      <!-- <header calss=masthead style="background-image: url(https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg);">Header</header> -->
+      <!-- <header calss=masthead style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/NGC_4414_%28NASA-med%29.jpg/1451px-NGC_4414_%28NASA-med%29.jpg);">Header</header> -->
 
-      <ngb-carousel *ngIf="images">
-        <ng-template ngbSlide>
-          <div class="picsum-img-wrapper">
-            <img [src]="images[0]" alt="Random first slide">
-          </div>
-          <div class="carousel-caption">
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </div>
-        </ng-template>
-      </ngb-carousel>
+
 
         <div class = "router-outlet">
     
           <router-outlet></router-outlet>
         </div>
-      </mat-sidenav-content>
+    </mat-sidenav-content>
 </mat-sidenav-container>
 
