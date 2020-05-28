@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { AlertifyService } from '../services/alertify.service';
 import { User } from '../shared/models/User';
 import { AuthService } from '../services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,12 +13,16 @@ import { AuthService } from '../services/auth.service';
 export class ProfileComponent implements OnInit {
 
   user: User;
+  showInfo = false;
 
   constructor(
     private userService: UserService,
     private alertify: AlertifyService,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private route: ActivatedRoute
+  ) {
+    this.user = {} as User;
+  }
 
   ngOnInit() {
     const id = this.authService.decodedToken.nameid;
@@ -31,5 +36,9 @@ export class ProfileComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     });
+  }
+
+  infoToggle() {
+    this.showInfo = !this.showInfo;
   }
 }

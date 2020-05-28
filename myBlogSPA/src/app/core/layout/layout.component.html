@@ -2,6 +2,8 @@
     <mat-sidenav #sidenav [mode]="'side'" [fixedInViewport]="true">
         <mat-nav-list class="nav-list" >
             <a mat-list-item [routerLink]="['/profile']">Profile</a>
+            <a mat-list-item [routerLink]="['/messages']">Message</a>
+
             <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
 
         </mat-nav-list>
@@ -34,12 +36,7 @@
             <li class="nav-item ">
                 <a class="nav-link" href="#">Musics</a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="#">Games</a>
-            </li>
-            <li class="nav-item " [routerLinkActive]>
-              <a class="nav-link" [routerLink]="['/messages']">Messaages</a>
-            </li>
+            
           </ul>
           
           <ng-container *ngIf="!loggedIn(); else ele">
