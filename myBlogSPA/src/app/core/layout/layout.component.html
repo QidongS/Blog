@@ -33,8 +33,15 @@
             <li class="nav-item ">
               <a class="nav-link" href="#">Projects</a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="#">Musics</a>
+            <li class="nav-item " >
+
+              <div ngbDropdown>
+                <a class="nav-link"  id="dropdown1" ngbDropdownToggle>Musics</a>
+                <div ngbDropdownMenu aria-labelledby="dropdown1">
+                  <button ngbDropdownItem> Action 1</button>
+                  <button ngbDropdownItem> Action 2</button>
+                </div>
+              </div>
             </li>
             
           </ul>

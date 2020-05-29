@@ -32,9 +32,9 @@ import { TopicsComponent } from './topics/topics.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { LayoutComponent } from './core/layout/layout.component';
 import { HeaderComponent } from './core/header/header.component';
+import { PostComponent } from './post/post.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 
 export function tokenFetcher(){
    return localStorage.getItem('token');
@@ -52,7 +52,8 @@ export function tokenFetcher(){
       TopicsComponent,
       FooterComponent,
       LayoutComponent,
-      HeaderComponent
+      HeaderComponent,
+      PostComponent
    ],
    imports: [
       BrowserModule,

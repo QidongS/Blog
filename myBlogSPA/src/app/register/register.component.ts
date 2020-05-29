@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    
     this.authService.register(this.model).subscribe(() => {
       this.alertifyService.success('Register success');
     }, error => {
