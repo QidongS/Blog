@@ -9,6 +9,8 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { TopicsComponent } from './topics/topics.component';
 import { PostComponent } from './post/post.component';
 import { AuthGuard } from './guards/auth.guard';
+import { UserResolver } from './resolver/user.resolver';
+import { MyaccountComponent } from './myaccount/myaccount.component';
 
 export const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -17,7 +19,8 @@ export const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent},
     { path: 'messages', component: MessagesComponent, canActivate: [AuthGuard]},
     { path: 'register', component: RegisterComponent},
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+    { path: 'myaccount', component: MyaccountComponent, canActivate: [AuthGuard]},
+    { path: 'profile/:id', component: ProfileComponent, resolve:{ user: UserResolver}},
     { path: 'topics', component: TopicsComponent},
     { path: 'post', component: PostComponent},
     { path: '**',  pathMatch: 'full', redirectTo: 'home' }

@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav [mode]="'side'" [fixedInViewport]="true">
-        <mat-nav-list class="nav-list" >
-            <a mat-list-item [routerLink]="['/profile']">Profile</a>
+        <mat-nav-list  class="nav-list" >
+            <a mat-list-item [routerLinkActive] [routerLink]="['/myaccount']">My Account</a>
             <a mat-list-item [routerLink]="['/messages']">Message</a>
 
             <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>

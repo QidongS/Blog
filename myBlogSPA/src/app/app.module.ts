@@ -33,8 +33,12 @@ import { FooterComponent } from './core/footer/footer.component';
 import { LayoutComponent } from './core/layout/layout.component';
 import { HeaderComponent } from './core/header/header.component';
 import { PostComponent } from './post/post.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { UserResolver } from './resolver/user.resolver';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from './services/user.service';
+
 
 export function tokenFetcher(){
    return localStorage.getItem('token');
@@ -53,6 +57,7 @@ export function tokenFetcher(){
       FooterComponent,
       LayoutComponent,
       HeaderComponent,
+      MyaccountComponent,
       PostComponent
    ],
    imports: [
@@ -82,7 +87,9 @@ export function tokenFetcher(){
    ],
    providers: [
       AuthService,
-      AlertifyService
+      AlertifyService,
+      UserService,
+      UserResolver
    ],
    bootstrap: [
       AppComponent

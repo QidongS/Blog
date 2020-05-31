@@ -24,19 +24,13 @@ export class ProfileComponent implements OnInit {
     this.user = {} as User;
   }
 
-  ngOnInit() {
-    const id = this.authService.decodedToken.nameid;
-    this.loadUserInfo(id);
+  ngOnInit() { 
+    this.route.data.subscribe( data => {
+      this.user = data['user'];
+    });
+
   }
 
-  loadUserInfo(id: number) {
-    this.userService.getUser(id).subscribe((user: User) => {
-      this.user = user;
-      console.log('loaded user success:' + user.userName);
-    }, error => {
-      this.alertify.error(error);
-    });
-  }
 
   infoToggle() {
     this.showInfo = !this.showInfo;
