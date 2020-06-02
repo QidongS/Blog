@@ -22,8 +22,8 @@ export class AuthGuard implements CanActivate {
       this.alertifyService.error('Please Log in first!');
       return false;
     }
-    
     return true;
   }
+
   
 }

@@ -1,4 +1,6 @@
 <body>
+    <form (ngSubmit)="onSubmit()" #emailForm="ngForm">
+
   <div class="container-fluid">
       <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12 image-section">
@@ -37,7 +39,7 @@
                               </div>
                               <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
                                   <button type="button" href="/history" class="btn btn-primary btn-block">History</button>
-                                  <button type="button" type="submit" [disabled]="!email.dirty" href="/save" class="btn btn-success btn-block">Save</button>
+                                  <button type="submit"  [disabled]="!email.dirty"  class="btn btn-success btn-block">Save</button>
 
                               </div>
                               
@@ -58,6 +60,7 @@
                                             <div class="tab-content">
                                               <div role="tabpanel" class="tab-pane fade show active">
                                                       <div class="row">
+
                                                               <div class="col-md-2">
                                                                   <label>ID</label>
                                                               </div>
@@ -77,19 +80,21 @@
                                                             
                                                               <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                                                 <div class="col-sm-6">
-                                                                    <input  type="text" class="form-control" id="inputEmail" email="email" [(ngModel)]="user.email" #email='ngModel'>
+                                                                        <input type="text" name="email" class="form-control" id="inputEmail" email="email" [(ngModel)]="user.email" #email='ngModel'>
                                                                 </div>
                                                             
                                                              
                                                           </div>
                                                           <div class="row">
                                                               <div class="col-md-2">
-                                                                  <label>Profesion</label>
+                                                                  <label>Profesion: </label>
                                                               </div>
                                                               <div class="col-md-6">
-                                                                  <p>Developer</p>
+                                                                  <p> Developer</p>
                                                               </div>
                                                           </div>
+
+
                                                   
                                               </div>
                                               <div role="tabpanel" class="tab-pane fade" >
@@ -133,4 +138,6 @@
           </div>
       </div>
     </div>
+</form>
+
 </body>
