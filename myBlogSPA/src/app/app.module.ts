@@ -38,7 +38,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { UserResolver } from './resolver/user.resolver';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from './services/user.service';
-
+import { PreventUnsavedGuard } from './guards/prevent-unsaved.guard';
 
 export function tokenFetcher(){
    return localStorage.getItem('token');
@@ -89,7 +89,9 @@ export function tokenFetcher(){
       AuthService,
       AlertifyService,
       UserService,
-      UserResolver
+      UserResolver,
+      PreventUnsavedGuard
+      
    ],
    bootstrap: [
       AppComponent

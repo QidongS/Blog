@@ -22,7 +22,7 @@
                               <p>FOLLOWER</p>
                               <span>0</span>
                           </div>      
-                          <div *ngIf="email.dirty" class="alert alert-warning" role="alert">
+                          <div *ngIf="email.dirty||profession.dirty" class="alert alert-warning" role="alert">
                             You have made changes! 
                           </div>                     
                       </div>
@@ -77,21 +77,20 @@
                                                               </div>
                                                           </div>
                                                           <div class="row">
-                                                            
                                                               <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                                                 <div class="col-sm-6">
+                                                                    <div class="container">
                                                                         <input type="text" name="email" class="form-control" id="inputEmail" email="email" [(ngModel)]="user.email" #email='ngModel'>
+                                                                    </div>
                                                                 </div>
                                                             
                                                              
                                                           </div>
                                                           <div class="row">
-                                                              <div class="col-md-2">
-                                                                  <label>Profesion: </label>
-                                                              </div>
-                                                              <div class="col-md-6">
-                                                                  <p> Developer</p>
-                                                              </div>
+                                                            <label for="inputProfession" class="col-sm-2 col-form-label">Profession</label>
+                                                                <div class="container">
+                                                                        <input type="text" name="profession" class="form-control" id="inputProfession" profession="profession" [(ngModel)]="user.profession" #profession='ngModel'>
+                                                                </div>
                                                           </div>
 
 

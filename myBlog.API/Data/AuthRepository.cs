@@ -42,7 +42,7 @@ namespace myBlog.API.Data
             user.PasswordHash = hashed;
             user.PasswordSalt = salt;
             user.Created = DateTime.Now;
-            user.level = 1;
+            user.Level = 1;
 
 
             await context.Users.AddAsync(user);

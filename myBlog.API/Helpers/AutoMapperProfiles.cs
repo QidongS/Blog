@@ -7,6 +7,7 @@ namespace myBlog.API.Helpers
     {
         public AutoMapperProfiles(){
             CreateMap<User, UserForListDto>();
+            CreateMap<UserForUpdateDto, User>();
         }
     }
 }

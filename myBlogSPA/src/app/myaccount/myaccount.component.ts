@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 export class MyaccountComponent implements OnInit {
   @ViewChild('emailForm',{static:true}) emailForm: NgForm;
   user: User;
-  email: string;
+  
   constructor(
     private userService: UserService,
     private alertify: AlertifyService,
@@ -40,6 +40,7 @@ export class MyaccountComponent implements OnInit {
 
   onSubmit(){
     console.log('email got:' + this.user.email);
+    console.log('profession got:' + this.user.profession);
     this.emailForm.reset(this.user);
   }
 

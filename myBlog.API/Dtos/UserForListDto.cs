@@ -6,7 +6,7 @@ namespace myBlog.API.Dtos
         public int Id {get; set;}
         public string UserName {get; set;}
 
-        public string avatarUrl{get; set;}
+        public string Avatar{get; set;}
 
         public DateTime Created{get; set;}
 
@@ -14,7 +14,8 @@ namespace myBlog.API.Dtos
 
         public string Bio { get; set; }
 
-        public int Level {get; set;}
+        public string Profession {get; set;}
+
 
 
     }

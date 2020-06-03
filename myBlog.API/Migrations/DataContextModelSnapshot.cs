@@ -22,8 +22,20 @@ namespace myBlog.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Avatar")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("INTEGER");
 
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnType("BLOB");
@@ -31,20 +43,20 @@ namespace myBlog.API.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("BLOB");
 
+                    b.Property<string>("Profession")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RealName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RegisterIp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Username")
                         .HasColumnType("TEXT");
-
-                    b.Property<string>("avatar")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("bio")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("email")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("level")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
