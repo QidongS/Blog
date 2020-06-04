@@ -13,6 +13,7 @@ import { NgForm } from '@angular/forms';
 export class MyaccountComponent implements OnInit {
   @ViewChild('emailForm',{static:true}) emailForm: NgForm;
   user: User;
+  id: number;
   
   constructor(
     private userService: UserService,
@@ -25,8 +26,8 @@ export class MyaccountComponent implements OnInit {
 
 
   ngOnInit() {
-    const id = this.authService.decodedToken.nameid;
-    this.loadUserInfo(id);
+    this.id = this.authService.decodedToken.nameid;
+    this.loadUserInfo(this.id);
   }
 
   loadUserInfo(id: number) {
@@ -41,10 +42,15 @@ export class MyaccountComponent implements OnInit {
   onSubmit(){
     console.log('email got:' + this.user.email);
     console.log('profession got:' + this.user.profession);
-    this.emailForm.reset(this.user);
+    this.userService.updateUser(this.id, this.user).subscribe(next =>{
+      this.alertify.success('Profile update success!');
+      this.emailForm.reset(this.user);
+    }, error => {
+      this.alertify.error(error);
+    }
+    );
   }
 
 
-  
 
 }
