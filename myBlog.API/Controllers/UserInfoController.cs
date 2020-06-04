@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using myBlog.API.Dtos;
 using AutoMapper;
-
+using System;
 namespace myBlog.API.Controllers
 {
     [Route("api/[controller]")]
@@ -32,9 +32,14 @@ namespace myBlog.API.Controllers
         public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto){
             if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
-
+            //Console.WriteLine("success");
             var user = await userInfo.GetUser(id);
-            var userToReturn = mapper.Map<UserForUpdateDto>(user);
+            // var userToReturn = mapper.Map<UserForUpdateDto>(user);
+            // mapper.Map(userForUpdateDto, user);
+            user.Email = userForUpdateDto.Email;
+            user.Bio = userForUpdateDto.Bio;
+            user.Profession = userForUpdateDto.Profession;
+            user.RealName = userForUpdateDto.RealName;
             if(await userInfo.SaveAll()){
                 return NoContent();
             }

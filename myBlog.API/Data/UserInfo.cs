@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using myBlog.API.Models;
+using System;
 namespace myBlog.API.Data
 {
     public class UserInfo : IUserInfo
@@ -19,6 +20,8 @@ namespace myBlog.API.Data
         }
 
         public async Task<bool> SaveAll(){
+            
+            Console.WriteLine("trying to save things...");
             return await this.context.SaveChangesAsync() > 0;
         }
 
