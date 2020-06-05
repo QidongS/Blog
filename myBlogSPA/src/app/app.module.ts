@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -77,6 +77,7 @@ export function tokenFetcher(){
       MatMenuModule,
       MatCheckboxModule,
       NgbModule,
+      ReactiveFormsModule,
       JwtModule.forRoot({
          config:{
             tokenGetter: tokenFetcher,
