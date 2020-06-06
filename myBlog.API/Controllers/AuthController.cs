@@ -41,7 +41,12 @@ namespace myBlog.API.Controllers
             }
 
             var newUser = new User{
-                Username = userForRegister.Username
+                Username = userForRegister.Username,
+                Created = userForRegister.Created,
+                Bio = userForRegister.Bio,
+                Level = userForRegister.Level,
+                Status = userForRegister.Status
+
             };
 
             var createdUser = await repository.Register(newUser, userForRegister.Password);
@@ -73,9 +78,10 @@ namespace myBlog.API.Controllers
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
+            DateTime expiretime = userForLogin.Remember ? DateTime.Now.AddDays(7) : DateTime.Now.AddDays(1);
             var tokenDescriptor = new SecurityTokenDescriptor{
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(1),
+                Expires = expiretime,
                 SigningCredentials = creds
 
             };

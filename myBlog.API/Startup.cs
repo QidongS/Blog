@@ -38,6 +38,7 @@ namespace myBlog.API
             services.AddControllers().AddNewtonsoftJson();
             services.AddCors();
             services.AddAutoMapper(typeof(UserInfo).Assembly);
+            //TODO： Add mapper 
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IUserInfo,UserInfo>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {

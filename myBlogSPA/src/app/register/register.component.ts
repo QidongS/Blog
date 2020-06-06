@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { AlertifyService } from '../services/alertify.service';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { User } from '../shared/models/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,13 +11,13 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  model: any = {};
+  user: User; 
   registerForm: FormGroup;
 
   constructor(
     private authService: AuthService,
-    private alertifyService: AlertifyService
+    private alertifyService: AlertifyService,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -36,7 +38,16 @@ export class RegisterComponent implements OnInit {
     // }, error => {
     //   this.alertifyService.error(error);
     // });
-    console.log(this.registerForm.value);
+    if(this.registerForm.valid){
+      this.user = Object.assign({}, this.registerForm.value);
+      this.authService.register(this.user).subscribe(() => {
+        this.alertifyService.success('Register success');
+      }, error => {
+      this.alertifyService.error(error);
+      }
+      );
+    }
+    // console.log(this.registerForm.value);
   }
 
   cancel(){

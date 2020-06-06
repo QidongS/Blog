@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { AlertifyService } from '../services/alertify.service';
 import { Router } from '@angular/router';
+import { User } from '../shared/models/User';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +13,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   @Input() loginMode: boolean;
-
-  model: any = {};
+  user: User;
+  loginForm: FormGroup;
 
   constructor(
     private authService: AuthService,
@@ -21,20 +23,28 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
+      remember: new FormControl(false)
+    });
   }
 
 
   login(){
-    this.authService.login(this.model).subscribe(next => {
-      this.alertifyService.success('Login Success!');
-      this.router.navigate(['/home']);
-    }, error => {
-      this.alertifyService.error('Login Error');
-    });
+    if(this.loginForm.valid){
+      this.user = Object.assign({}, this.loginForm.value);
+      console.log(this.user);
+      this.authService.login(this.user, this.loginForm.value.remember).subscribe(next => {
+        this.alertifyService.success('Login Success!');
+        this.router.navigate(['/home']);
+      }, error => {
+        this.alertifyService.error(error);
+      });
+    };
   }
 
   loggedIn(){
-    var status = this.authService.loggedIn();
     return this.authService.loggedIn();
   }
 

@@ -1,23 +1,32 @@
 <div *ngIf="!loggedIn()">
 <body class="text-center">
-<form  #loginForm="ngForm" class="form-signin" action="dashboard.html"  method="post" (ngSubmit)="login()">
+<form [formGroup]="loginForm"  class="form-signin" action="dashboard.html"  method="post" (ngSubmit)="login()">
 	<img class="mb-4"  src="assets/img/soda.svg" alt="" width="72" height="72">
 	<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 	<!--notify bad login-->
 	<!-- <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p> -->
-	<label class="sr-only" >Username</label>
-	<input type="text"  name="username" class="form-control" placeholder="Username" [(ngModel)]="model.username"  required autofocus="">
-	<label class="sr-only" >Password</label>
-	<input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="model.password" required>
+	<div class="form-group">
+		<input type="text" 
+		[ngClass]="{'is-invalid': loginForm.get('username').errors && loginForm.get('username').touched}" 
+		formControlName="username" class="form-control" placeholder="Username"   autofocus="">
+		<div class="invalid-feedback"> A username is required!</div>
+	</div>
+	<div class="form-group">
+		<input type="password"
+		[ngClass]="{'is-invalid': loginForm.get('password').errors && loginForm.get('password').touched}" 
+		 formControlName="password" class="form-control" placeholder="Password"  >
+		 <div class="invalid-feedback" *ngIf="loginForm.get('password').hasError('minlength')"> A password must be at least 4 characters!</div>
+		 <div class="invalid-feedback" *ngIf="loginForm.get('password').hasError('maxlength')"> A password can not be more than 16 characters!</div>
+
+	</div>
 	
 	<div class="checkbox mb-3">
 		<label>      
-            <mat-checkbox>Remember Me</mat-checkbox>
+            <mat-checkbox formControlName="remember" >Remember Me</mat-checkbox>
 		</label>
 	</div>
-	<!--allow switch between chinese and english-->
 	<button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block" type="submit">Next</button>
 </form>
 </body>
-
+<p>{{this.loginForm.value | json}}</p>
 </div>

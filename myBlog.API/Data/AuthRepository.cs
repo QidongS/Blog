@@ -41,8 +41,6 @@ namespace myBlog.API.Data
             createPass(password, out hashed, out salt);
             user.PasswordHash = hashed;
             user.PasswordSalt = salt;
-            user.Created = DateTime.Now;
-            user.Level = 1;
 
 
             await context.Users.AddAsync(user);
