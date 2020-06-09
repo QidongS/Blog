@@ -41,6 +41,7 @@ namespace myBlog.API
             //TODO： Add mapper 
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IUserInfo,UserInfo>();
+            services.AddScoped<IPostRepository, PostRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
                 options.TokenValidationParameters = new TokenValidationParameters{
                     ValidateIssuerSigningKey = true,
