@@ -18,7 +18,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(user: User, remember: boolean) {
-    return this.http.post(this.url + 'login', {user, remember})
+    return this.http.post(this.url + 'login', user)
     .pipe(
       map((response: any) => {
         const user = response;
