@@ -21,6 +21,10 @@ export class PostListResolver implements Resolve<Post[]> {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<Post[]> {
+        if(route.params.id!=null){
+            this.pageNumber = route.params.id;
+        }
+
         return this.postService.getPosts(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
                 this.alertify.error('Failed fetching posts');

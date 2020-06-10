@@ -40,7 +40,7 @@
    
 </div> -->
 
-<div class="container">
+<div class="container" *ngIf="this.posts!=null&&this.pagination!=null">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <ng-container *ngFor="let postheader of this.posts">
@@ -63,7 +63,8 @@
 
         <!-- Pager -->
         <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+          <!-- <button class="btn btn-primary float-right" [routerLink]="['page/'+this.pagination.currentPage+1]">Older Posts &rarr;</button> -->
+          <button class="btn btn-primary float-right" [disabled]="this.pagination.currentPage>=this.pagination.totalPages" (click)="nextPage()">older posts</button>
         </div>
       </div>
     </div>
