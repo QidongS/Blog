@@ -19,6 +19,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 
 import { AppComponent } from './app.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { ValueComponent } from './value/value.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
@@ -59,7 +60,8 @@ export function tokenFetcher(){
       LayoutComponent,
       HeaderComponent,
       MyaccountComponent,
-      PostComponent
+      PostComponent,
+      PageNotFoundComponent
    ],
    imports: [
       BrowserModule,
