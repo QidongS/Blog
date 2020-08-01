@@ -1,8 +1,13 @@
 using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
 namespace myBlog.API.Models
 {
     public class Post
     {
+        [BsonId]
+        
         public int PostId { get; set; }
 
         public int UserId { get; set; }

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using myBlog.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -34,6 +35,13 @@ namespace myBlog.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<BlogDatabaseSettings>(
+                Configuration.GetSection(nameof(BlogDatabaseSettings))
+            );
+            services.AddSingleton<IBlogDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<BlogDatabaseSettings>>().Value
+            );
+            
             //specify default connection defined in appsettings.json
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers().AddNewtonsoftJson();
