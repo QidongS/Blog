@@ -35,12 +35,14 @@ namespace myBlog.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<BlogDatabaseSettings>(
-                Configuration.GetSection(nameof(BlogDatabaseSettings))
+            //services.AddMvc();
+
+            services.Configure<BlogDatabaseSettings>( options =>{
+                    options.ConnectionString = Configuration.GetSection("MongoSettings:ConnectionString").Value;
+                    options.Database = Configuration.GetSection("MongoSettings:Database").Value;
+                }
             );
-            services.AddSingleton<IBlogDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<BlogDatabaseSettings>>().Value
-            );
+            
             
             //specify default connection defined in appsettings.json
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));

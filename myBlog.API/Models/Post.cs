@@ -12,11 +12,12 @@ namespace myBlog.API.Models
 
         public int UserId { get; set; }
 
-        public DateTime Post_time { get; set;}
+        [BsonDateTimeOptions]
+        public DateTime Post_time { get; set;} = DateTime.Now;
 
         public string Title { get; set; }
 
-        public int Toping {get; set;}
+        public int Likes {get; set;}
 
         public string Content {get; set;}
     }
