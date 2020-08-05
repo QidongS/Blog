@@ -37,11 +37,12 @@ namespace myBlog.API
         {
             //services.AddMvc();
 
-            services.Configure<BlogDatabaseSettings>( options =>{
-                    options.ConnectionString = Configuration.GetSection("MongoSettings:ConnectionString").Value;
-                    options.Database = Configuration.GetSection("MongoSettings:Database").Value;
-                }
+            services.Configure<BlogDatabaseSettings>( 
+                Configuration.GetSection(nameof(BlogDatabaseSettings))
             );
+
+            services.AddSingleton<IBlogDatabaseSettings>(sp => sp.GetRequiredService<IOptions<BlogDatabaseSettings>>().Value);
+            services.AddSingleton<PostRepository>();
             
             
             //specify default connection defined in appsettings.json
@@ -52,7 +53,6 @@ namespace myBlog.API
             //TODO： Add mapper 
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IUserInfo,UserInfo>();
-            services.AddScoped<IPostRepository, PostRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
                 options.TokenValidationParameters = new TokenValidationParameters{
                     ValidateIssuerSigningKey = true,

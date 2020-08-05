@@ -9,45 +9,40 @@ using MongoDB.Driver;
 using System;
 namespace myBlog.API.Data
 {
-    public class PostRepository : IPostRepository
+    public class PostRepository 
     {
-        private readonly IMongoCollection<Post> posts;
-        private readonly IMongoDatabase _database = null;
-        public PostRepository( IOptions<BlogDatabaseSettings> settings){
-            var client = new MongoClient(settings.Value.ConnectionString);
-            if(client != null) {
-                _database = client.GetDatabase(settings.Value.Database);
-            }
-            posts = _database.GetCollection<Post>("Post");
+        private readonly IMongoCollection<Post> _posts;
+        public PostRepository( IBlogDatabaseSettings settings){
+            var client = new MongoClient(settings.ConnectionString);
+
+            var database = client.GetDatabase(settings.DatabaseName);
+            
+            _posts = database.GetCollection<Post>(settings.CollectionName);
         }
 
-        public void Add<T>(T entity) where T: class{
-            this.context.Add(entity);
+        public void Add(Post p) {
+            Console.WriteLine("writing to database"+p.PostId);
+           this._posts.InsertOne(p);
         }
 
-        public void Delete<T>(T entity) where T: class{
-            this.context.Remove(entity);
+
+        public void Delete(int id) {
+            this._posts.DeleteOne(p =>p.PostId==id);
         }
 
-        public async Task<bool> SaveAll(){
-            return await this.context.SaveChangesAsync()>0;
-        }
-
-        public async Task<PagedList<Post>> GetPosts(PostParams postParams){
-            try{
+        public async Task<PagedList> Get(PostParams postParams){
+            
                
-                return await PagedList<Post>.CreateAsync(this.posts,postParams.PageNumber,postParams.PageSize );
+            return await PagedList.CreateAsync(_posts,postParams.PageNumber,postParams.PageSize );
 
-            }catch(Exception ex){
-                throw ex;
-            }
+            
         }
 
-        public async Task<Post> GetPost(int id){
+        public async Task<Post> Get(int id){
             // var user = await this.context.Posts.FirstOrDefaultAsync(p=>p.PostId == id);
             // return user;
             
-            return await  _posts.FindAsync(p =>p.PostId==id).ToListAsync();
+            return await _posts.Find(p =>p.PostId==id).SingleOrDefaultAsync();
 
         }
     }
