@@ -36,13 +36,12 @@ namespace myBlog.API.Controllers
         //POST
         [HttpPost]
         public void Post([FromBody] string value){
-
+            context.AddAsync(value);
         }
 
         //PUT 
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value){
-
         }
 
         //DELETE 

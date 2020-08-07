@@ -31,17 +31,7 @@ namespace myBlog.API
             Configuration = configuration;
         }
 
-        public void ConfigureDevelopmentServices(IServiceCollection services){
-            services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-
-            ConfigureServices(services);
-        }
-
-        public void ConfigureProductionServices(IServiceCollection services){
-            services.AddDbContext<DataContext>(x => x.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
-
-            ConfigureServices(services);
-        }
+      
 
         public IConfiguration Configuration { get; }
 
@@ -56,7 +46,8 @@ namespace myBlog.API
 
             services.AddSingleton<IBlogDatabaseSettings>(sp => sp.GetRequiredService<IOptions<BlogDatabaseSettings>>().Value);
             services.AddSingleton<PostRepository>();
-            
+        
+            services.AddDbContext<DataContext>(x => x.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             
             //specify default connection defined in appsettings.json
             services.AddControllers().AddNewtonsoftJson();
@@ -110,7 +101,6 @@ namespace myBlog.API
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

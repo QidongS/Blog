@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.EntityFrameworkCore.Extensions;
+
 using myBlog.API.Models;
 
 namespace myBlog.API.Data
@@ -10,7 +12,15 @@ namespace myBlog.API.Data
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder){
-            modelBuilder.Entity<Post>().HasOne<User>().WithMany().HasForeignKey(p => p.UserId);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Username).IsRequired();
+            });
+            
+
+            //modelBuilder.Entity<Post>().HasOne<User>().WithMany().HasForeignKey(p => p.UserId);
         }
         
         public DbSet<Value> Values { get; set; }
@@ -18,6 +28,5 @@ namespace myBlog.API.Data
         //add migration to database
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Post> Posts {get; set;} 
     }
 }

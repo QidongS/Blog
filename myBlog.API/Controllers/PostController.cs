@@ -27,12 +27,12 @@ namespace myBlog.API.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetPosts([FromQuery]PostParams postParams){
-
+            Console.WriteLine("in post get");
             //Console.WriteLine(postParams.PageNumber.ToString(),postParams.PageSize.ToString());
             var posts = await this.postRepository.Get(postParams);
             Response.AddPagination(posts.CurrentPage,posts.PageSize,Convert.ToInt32( posts.TotalCount),posts.TotalPages);
 
-            return Ok(posts);
+            return Ok(posts.postsTobeListed);
         }
 
         [HttpPost("{id}")]

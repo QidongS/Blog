@@ -27,6 +27,7 @@ export class PostListResolver implements Resolve<Post[]> {
 
         return this.postService.getPosts(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
+                console.log("failing");
                 this.alertify.error('Failed fetching posts');
                 this.router.navigate(['/home']);
                 return of(null);
