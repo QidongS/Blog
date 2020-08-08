@@ -4,21 +4,39 @@
 
 trigger:
 - master
+- releases/*
 
 resources:
 - repo: self
 
 variables:
   tag: '$(Build.BuildId)'
+  
+pool:
+  vmImage: 'ubuntu-latest'
 
 stages:
 - stage: Build
-  displayName: Build image
   jobs:  
-  - job: Build
+  - job: Publish_Dotnet
     displayName: Build
-    pool:
-      vmImage: 'ubuntu-latest'
+    
+    steps:
+    - task: CmdLine@2
+      inputs:
+        script: 'ng build'
+        workingDirectory: '$(Build.SourcesDirectory)/myBlogSPA/'
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'publish'
+        publishWebProjects: true
+        zipAfterPublish: false
+        modifyOutputPath: false
+  
+  
+  - job: Build_Docker
+    displayName: Build
     steps:
     - task: Docker@2
       displayName: Build an image
