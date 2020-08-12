@@ -38,6 +38,7 @@ import { MyaccountComponent } from './myaccount/myaccount.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { UserResolver } from './resolver/user.resolver';
 import { PostListResolver } from './resolver/postlist.resolver';
+import {PostResolver} from './resolver/post.resolver';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from './services/user.service';
 import { PreventUnsavedGuard } from './guards/prevent-unsaved.guard';
@@ -95,6 +96,7 @@ export function tokenFetcher(){
       UserService,
       UserResolver,
       PostListResolver,
+      PostResolver,
       PreventUnsavedGuard
       
    ],

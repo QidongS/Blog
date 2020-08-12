@@ -12,7 +12,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { UserResolver } from './resolver/user.resolver';
 import { PostListResolver } from './resolver/postlist.resolver';
 import { MyaccountComponent } from './myaccount/myaccount.component';
-import { PreventUnsavedGuard  } from "./guards/prevent-unsaved.guard";
+import { PreventUnsavedGuard  } from './guards/prevent-unsaved.guard';
+import { PostResolver} from './resolver/post.resolver';
+
+
 export const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home'},
     { path: 'home', component: HomeComponent, resolve: {postlist: PostListResolver}},
@@ -25,7 +28,7 @@ export const appRoutes: Routes = [
     { path: 'topics', component: TopicsComponent},
     { path: 'page/1', pathMatch: 'full', redirectTo: 'home'},
     { path: 'page/:id', component: HomeComponent, resolve: {post: PostListResolver}},
-    { path: 'post/:id', component: PostComponent},
+    { path: 'post/:id', component: PostComponent, resolve: {post: PostResolver}},
     { path: '**',  pathMatch: 'full', redirectTo: 'home' }
 
 ];

@@ -6,6 +6,7 @@ using myBlog.API.Helpers;
 using System.Threading.Tasks;
 using System;
 using System.IO;
+using Markdig;
 
 namespace myBlog.API.Controllers
 {
@@ -22,6 +23,8 @@ namespace myBlog.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(int id){
             var post = await this.postRepository.Get(id);
+            var result = Markdown.ToHtml("This is a text with some *emphasis*");
+            Console.WriteLine("|"+result+"|");
             return Ok(post);
         }
 
