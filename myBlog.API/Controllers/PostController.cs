@@ -23,8 +23,9 @@ namespace myBlog.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(int id){
             var post = await this.postRepository.Get(id);
-            var result = Markdown.ToHtml("This is a text with some *emphasis*");
-            Console.WriteLine("|"+result+"|");
+            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+            post.Content= Markdown.ToHtml(post.Content);
+            
             return Ok(post);
         }
 

@@ -17,7 +17,7 @@ namespace myBlog.API.Data
 
             var database = client.GetDatabase(settings.DatabaseName);
             
-            _posts = database.GetCollection<Post>(settings.CollectionName);
+            _posts = database.GetCollection<Post>(settings.BlogCollectionName);
         }
 
         public void Add(Post p) {

@@ -4,7 +4,7 @@ namespace myBlog.API.Helpers
 {
     public interface IBlogDatabaseSettings
     {
-        string CollectionName {get; set;}
+        string BlogCollectionName {get; set;}
         string ConnectionString {get; set;}
 
         string DatabaseName {get; set;} 
@@ -13,7 +13,7 @@ namespace myBlog.API.Helpers
     }
     public class BlogDatabaseSettings: IBlogDatabaseSettings
     {
-        public string CollectionName {get; set;}
+        public string BlogCollectionName {get; set;}
         public string ConnectionString {get; set;}
 
         public string DatabaseName {get; set;} 
