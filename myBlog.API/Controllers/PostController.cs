@@ -31,7 +31,7 @@ namespace myBlog.API.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetPosts([FromQuery]PostParams postParams){
-            Console.WriteLine("in post get");
+            //Console.WriteLine("in post get");
             //Console.WriteLine(postParams.PageNumber.ToString(),postParams.PageSize.ToString());
             var posts = await this.postRepository.Get(postParams);
             Response.AddPagination(posts.CurrentPage,posts.PageSize,Convert.ToInt32( posts.TotalCount),posts.TotalPages);
@@ -49,7 +49,7 @@ namespace myBlog.API.Controllers
                 s = await reader.ReadToEndAsync();
             }
 
-            post.PostId = 2;
+            post.PostId = 3;
             post.UserId = 0;
             post.Title = "Second Post";
             post.Likes = 0;

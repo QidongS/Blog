@@ -21,7 +21,7 @@ namespace myBlog.API.Data
 
         public async Task<bool> SaveAll(){
             
-            Console.WriteLine("trying to save things...");
+            //Console.WriteLine("trying to save things...");
             return await this.context.SaveChangesAsync() > 0;
         }
 

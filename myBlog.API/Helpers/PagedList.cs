@@ -28,9 +28,9 @@ namespace myBlog.API.Helpers
             TotalPages = (int) Math.Ceiling(count/ (double) PageSize);
             this.postsTobeListed = new List<Post>();
             this.postsTobeListed.AddRange(items);
-            foreach(Post p in postsTobeListed){
-                Console.WriteLine(p.Content);
-            }
+            // foreach(Post p in postsTobeListed){
+            //     Console.WriteLine(p.Content);
+            // }
         }
 
         public static async Task<PagedList> CreateAsync(IMongoCollection<Post> source, int pageNumber, int pageSize){

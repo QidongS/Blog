@@ -26,7 +26,7 @@ namespace myBlog.API.Data
         }
 
         public void Add(Post p) {
-            Console.WriteLine("writing to database"+p.PostId);
+            //Console.WriteLine("writing to database"+p.PostId);
            this._posts.InsertOne(p);
         }
 
