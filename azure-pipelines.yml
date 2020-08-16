@@ -22,7 +22,6 @@ stages:
     
     steps:
     - task: NodeTool@0
-      inputs:
       displayName: 'Install Node.js'
 
     - script: |
