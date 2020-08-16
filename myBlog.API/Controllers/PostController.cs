@@ -51,9 +51,10 @@ namespace myBlog.API.Controllers
 
             post.PostId = 2;
             post.UserId = 0;
-            post.Title = "First Post";
+            post.Title = "Second Post";
             post.Likes = 0;
             post.Content = s;
+            post.Post_time=new DateTime(2020, 8, 2, 8, 30, 52);
             
             
             postRepository.Add(post);

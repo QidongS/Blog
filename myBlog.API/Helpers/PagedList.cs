@@ -39,7 +39,7 @@ namespace myBlog.API.Helpers
             var items = await source.Find(post => post.PostId>=(pageNumber-1)*pageSize).ToListAsync();
             // source.AsQueryable<Post>().Skip((pageNumber-1)*pageSize).Take(pageSize);
             //var items = await source.Skip((pageNumber-1)*pageSize).Take(pageSize).ToListAsync();
-            Console.WriteLine((pageNumber-1)*pageSize);
+            //Console.WriteLine((pageNumber-1)*pageSize);
             return new PagedList(items, count, pageNumber, pageSize);
         }
 

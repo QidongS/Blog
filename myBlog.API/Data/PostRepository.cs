@@ -9,15 +9,20 @@ using MongoDB.Driver;
 using System;
 namespace myBlog.API.Data
 {
-    public class PostRepository 
+    public class PostRepository : IPostRepository
     {
         private readonly IMongoCollection<Post> _posts;
+
+
         public PostRepository( IBlogDatabaseSettings settings){
             var client = new MongoClient(settings.ConnectionString);
 
             var database = client.GetDatabase(settings.DatabaseName);
             
             _posts = database.GetCollection<Post>(settings.BlogCollectionName);
+
+
+
         }
 
         public void Add(Post p) {
