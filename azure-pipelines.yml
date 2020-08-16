@@ -12,29 +12,35 @@ resources:
 variables:
   tag: '$(Build.BuildId)'
   
-pool:
-  vmImage: 'ubuntu-latest'
+pool: Default
+  
 
 stages:
 - stage: Build
   jobs:  
-  - job: Publish_Dotnet
-    displayName: Build
+  - job: Build_Angular_and_Dotnet
     
     steps:
-    - task: CmdLine@2
+    - task: NodeTool@0
       inputs:
-        script: 'ng build'
-        workingDirectory: '$(Build.SourcesDirectory)/myBlogSPA/'
+        versionSpec: '8.3.26'
+      displayName: 'Install Node.js'
+
+    - script: |
+        cd myBlogSPA
+        npm install -g @angular/cli
+        npm install
+        ng build 
+      displayName: 'npm install and build'
 
     - task: DotNetCoreCLI@2
       inputs:
         command: 'publish'
-        publishWebProjects: true
+        publishWebProjects: false
+        projects: 'myBlog.API/myBlog.API.csproj'
         zipAfterPublish: false
         modifyOutputPath: false
-  
-  
+
   - job: Build_Docker
     displayName: Build
     steps:
