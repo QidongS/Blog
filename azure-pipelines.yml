@@ -23,13 +23,12 @@ stages:
     steps:
     - task: NodeTool@0
       inputs:
-        versionSpec: '8.3'
       displayName: 'Install Node.js'
 
     - script: |
-        cd myBlogSPA
         npm install -g @angular/cli
         npm install
+        cd myBlogSPA
         ng build 
       displayName: 'npm install and build'
     
