@@ -21,21 +21,21 @@ stages:
   - job: Build_Angular_and_Dotnet
     
     steps:
-    # - task: NodeTool@0
-    #   displayName: 'Install Node.js'
 
-    # - script: |
-    #     npm install -g @angular/cli
-    #     npm install
-    #     ng build 
-    #   displayName: 'npm install and build'
     
     - task: Bash@3
+      displayName: build angular project 
       inputs:
         targetType: 'inline'
         script: |
           cd myBlogSPA
           ng build
+          
+    - task: Bash@3
+      displayName: get production settings
+      inputs:
+        targetType: 'inline'
+        script: | 
           cp ~/*.json ./myBlog.API
 
     - task: DotNetCoreCLI@2
@@ -45,14 +45,10 @@ stages:
         projects: 'myBlog.API/myBlog.API.csproj'
         zipAfterPublish: false
         modifyOutputPath: false
-
-  - job: Build_Docker
-    displayName: Build
-    steps:
     - task: Docker@2
-      displayName: Build an image
+      displayName: Build docker image
       inputs:
         command: build
-        dockerfile: '$(Build.SourcesDirectory)/myBlog.API/Dockerfile'
+        dockerfile: 'myBlog.API/Dockerfile'
         tags: |
           $(tag)
