@@ -53,4 +53,13 @@ stages:
         command: build
         dockerfile: 'myBlog.API/Dockerfile'
         tags: |
-          $(tag)
+          $(repo)
+
+
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'MyDockerHub'
+        repository: '$(repo)'
+        command: 'push'
+        addPipelineData: false
+
