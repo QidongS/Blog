@@ -1,26 +1,33 @@
 version: '3'
 services:
-   mysql:
-     image: qidongs/mysql-server
-     volumes:
-       - mysql_data:/var/lib/mysql
-     restart: always
+  mysql:
+    container_name: test_mysql
+    image: qidongs/mysql-server
+    volumes:
+      - ${VOLUME_PATH}/mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    restart: always
     
-    mongo:
-      image: mongo
-      volumes:
-       - mongo_data:/data/db
-      restart: always
+  mongo:
+    container_name: test_mongo
+    image: mongo
+    volumes:
+     - ${VOLUME_PATH}/mongo_data:/data/db
+    restart: always
 
-   dotnet:
-     depends_on:
-       - mysql
-       - mongo
-     image: qidongs/myblog
-     volumes:
-        - myblog:/APP/
-     ports:
-       - "80:80"
-       - "443:443"
-     restart: always
+  dotnet:
+    container_name: test_myBlog
+    depends_on:
+     - mysql
+     - mongo
+    image: qidongs/myblog
+    ports:
+      - "5003:5003"
+      - "80:80"
+      - "443:443"
+    
 
