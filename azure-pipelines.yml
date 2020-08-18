@@ -12,36 +12,45 @@ resources:
 variables:
   tag: '$(Build.BuildId)'
   
-pool:
-  vmImage: 'ubuntu-latest'
+pool: Default
+  
 
 stages:
 - stage: Build
   jobs:  
-  - job: Publish_Dotnet
-    displayName: Build
+  - job: Build_Angular_and_Dotnet
     
     steps:
-    - task: CmdLine@2
+
+    
+    - task: Bash@3
+      displayName: build angular project 
       inputs:
-        script: 'ng build'
-        workingDirectory: '$(Build.SourcesDirectory)/myBlogSPA/'
+        targetType: 'inline'
+        script: |
+          cd myBlogSPA
+          ng build
+          
+    - task: Bash@3
+      displayName: get production settings
+      inputs:
+        targetType: 'inline'
+        script: | 
+          cp ~/*.json ./myBlog.API
 
     - task: DotNetCoreCLI@2
       inputs:
         command: 'publish'
-        publishWebProjects: true
+        arguments: '-c Release'
+        publishWebProjects: false
+        projects: 'myBlog.API/myBlog.API.csproj'
         zipAfterPublish: false
         modifyOutputPath: false
-  
-  
-  - job: Build_Docker
-    displayName: Build
-    steps:
+
     - task: Docker@2
-      displayName: Build an image
+      displayName: Build docker image
       inputs:
         command: build
-        dockerfile: '$(Build.SourcesDirectory)/myBlog.API/Dockerfile'
+        dockerfile: 'myBlog.API/Dockerfile'
         tags: |
           $(tag)
