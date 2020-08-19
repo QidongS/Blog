@@ -42,11 +42,11 @@ stages:
       displayName: Build docker image
       inputs:
         command: build
+        arguments: --rm 
         dockerfile: 'myBlog.API/Dockerfile'
         repository: $(repo)
         tags: |
           latest
-
 
     - task: Docker@2
       inputs:
