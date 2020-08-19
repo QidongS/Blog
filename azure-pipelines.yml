@@ -54,4 +54,6 @@ stages:
         repository: '$(repo)'
         command: 'push'
         addPipelineData: false
+        tags: |
+          latest
 
