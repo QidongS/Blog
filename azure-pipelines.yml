@@ -38,19 +38,22 @@ stages:
         script: | 
           cp ~/*.json ./myBlog.API
 
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: 'publish'
-        arguments: '-c Release'
-        publishWebProjects: false
-        projects: 'myBlog.API/myBlog.API.csproj'
-        zipAfterPublish: false
-        modifyOutputPath: false
-
     - task: Docker@2
       displayName: Build docker image
       inputs:
         command: build
+        arguments: --rm 
         dockerfile: 'myBlog.API/Dockerfile'
+        repository: $(repo)
         tags: |
-          $(tag)
+          latest
+
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'MyDockerHub'
+        repository: '$(repo)'
+        command: 'push'
+        addPipelineData: false
+        tags: |
+          latest
+
