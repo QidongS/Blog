@@ -8,7 +8,10 @@ import { Pagination } from '../shared/models/Pagination';
   templateUrl: './home.component.html',
   styleUrls: [
     './home.component.scss',
-    '../../assets/scss/clean-blog.min.css'
+    '../../assets/scss/clean-blog.min.css',
+    '../../assets/scss/moonglade-base.css',
+    '../../assets/scss/moonglade-rwd.css',
+    '../../assets/scss/fonts.css'
   ]
 })
 export class HomeComponent implements OnInit {
@@ -28,7 +31,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.images = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/NGC_4414_%28NASA-med%29.jpg/1451px-NGC_4414_%28NASA-med%29.jpg',
-      'assets/img/one.png'
+      'assets/img/one.png',
+      'assets/img/two.jpg',
+      'assets/img/three.jpg'
     ];
     this.route.data.subscribe(({postlist})  => {
       this.posts = postlist.result;

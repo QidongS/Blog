@@ -4,7 +4,7 @@
         <img [src]="images[1]" style='height: 100%; width: 100%; object-fit: cover' alt="Random first slide">
       </div>
       <div class="carousel-caption">
-        <h1>Welcome in, </h1>
+        <h1>Welcome! </h1>
         <p>See what you find interesting!</p>
       </div>
     </ng-template>
@@ -40,9 +40,9 @@
    
 </div> -->
 
-<div class="container" *ngIf="this.posts!=null&&this.pagination!=null">
+<div class="container " *ngIf="this.posts!=null&&this.pagination!=null">
   <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
+    <div class="col-lg-9 col-md-12 ">
       <ng-container *ngFor="let postheader of this.posts">
         <div class="post-preview">
           <a [href]="'post/'+postheader.postId">
@@ -60,6 +60,7 @@
         <hr>
       </ng-container>
       
+      
 
       <!-- Pager -->
       <div class="clearfix">
@@ -67,6 +68,50 @@
         <button class="btn btn-primary float-right" [disabled]="this.pagination.currentPage>=this.pagination.totalPages" (click)="nextPage()">older posts</button>
       </div>
     </div>
+
+    <div class="col-lg-3 d-none d-lg-block">
+
+      <section class="blog-info-desktop-lg d-none d-lg-block" style=" margin-top: 2rem;">
+        <div class="card-bkimg-container" >
+            <img class="card-bkimg" alt="" [src]="images[3]">
+        </div>
+        <div class="blog-info-photo-text text-center">
+            <img [src]="images[2]" alt="Qidong" class="rounded-circle blogger-head-pic">
+            <div>
+                <h3 class="mt-3">
+                    Qidong(Richard)
+                </h3>
+                <!-- <p class="mr-3 ml-3">
+                    let today = new Beginning();
+                </p> -->
+            </div>
+        </div>
+      </section>
+
+        
+        <section class="top-tags mb-4" style=" margin-top: 2rem;">
+          <div class="card">
+              <div class="card-header">Top Tags</div>
+              <div class="card-body">
+                  
+                      
+          <div class="toptags-list">
+            <a rel="17" href="google.com">C#</a>
+            <a rel="17" href="google.com">Azure</a>
+          </div>
+                  
+                  <hr>
+                  <a class="card-link" href="/tags">All Tags</a>
+              </div>
+          </div>
+      </section>
+      
+    
+    </div>
+  
+  
+
   </div>
+
 
 </div>

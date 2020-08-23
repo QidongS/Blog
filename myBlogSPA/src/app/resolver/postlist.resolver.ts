@@ -29,7 +29,7 @@ export class PostListResolver implements Resolve<Post[]> {
             catchError(error => {
                 console.log("failing");
                 this.alertify.error('Failed fetching posts');
-                this.router.navigate(['/home']);
+                //this.router.navigate(['/home']);
                 return of(null);
             })
         );
