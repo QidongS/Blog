@@ -42,6 +42,7 @@ import {PostResolver} from './resolver/post.resolver';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from './services/user.service';
 import { PreventUnsavedGuard } from './guards/prevent-unsaved.guard';
+import { NgxLoadingModule } from 'ngx-loading';
 
 export function tokenFetcher(){
    return localStorage.getItem('token');
@@ -71,6 +72,7 @@ export function tokenFetcher(){
       BsDropdownModule.forRoot(),
       CollapseModule.forRoot(),
       CarouselModule.forRoot(),
+      NgxLoadingModule.forRoot({}),
       BrowserAnimationsModule,
       AppRoutingModule,
       MatSidenavModule,
