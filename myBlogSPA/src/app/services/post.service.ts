@@ -16,13 +16,16 @@ export class PostService {
     return this.http.get<Post>(this.url + '/' + id);
   }
 
-  getPosts(page?, itemsPerPage?): Observable<PaginatedResult<Post[]>>{
+  getPosts(page = 1, itemsPerPage = 5): Observable<PaginatedResult<Post[]>>{
     const presult: PaginatedResult<Post[]> = new PaginatedResult<Post[]>();
     let params = new HttpParams();
+  
+    //console.log("post log");
+    //console.log(page, itemsPerPage);
 
     if (page != null && itemsPerPage != null){
-      params = params.append('pageNumber', page);
-      params = params.append('pageSize', itemsPerPage);
+      params = params.append('pageNumber', page.toString());
+      params = params.append('pageSize', itemsPerPage.toString());
     }
 
     return this.http.get<Post[]>(this.url, {observe: 'response', params}).pipe(
@@ -30,7 +33,7 @@ export class PostService {
         presult.result = response.body;
         if(response.headers.get('Pagination') != null) {
           presult.pagination = JSON.parse(response.headers.get('Pagination'));
-          
+
         }
         return presult;
       })

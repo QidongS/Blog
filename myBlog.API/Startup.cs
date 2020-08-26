@@ -20,6 +20,7 @@ using myBlog.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.HttpOverrides;
 using AutoMapper;
 using myBlog.API.Helpers;
 namespace myBlog.API
@@ -51,6 +52,13 @@ namespace myBlog.API
             
             //specify default connection defined in appsettings.json
             services.AddControllers().AddNewtonsoftJson();
+            //add Forwarded Headers Middleware 
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+            
             services.AddCors();
             services.AddAutoMapper(typeof(UserInfo).Assembly);
             //TODO： Add mapper 
@@ -72,8 +80,10 @@ namespace myBlog.API
         {
             if (env.IsDevelopment())
             {
+                app.UseForwardedHeaders();
                 app.UseDeveloperExceptionPage();
             }else{
+                app.UseForwardedHeaders();
                 app.UseExceptionHandler(builder => {
                     builder.Run(async context => {
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

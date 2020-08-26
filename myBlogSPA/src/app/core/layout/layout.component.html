@@ -1,22 +1,22 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav [mode]="'side'" [fixedInViewport]="true">
         <mat-nav-list  class="nav-list" >
-            <a mat-list-item [routerLinkActive] [routerLink]="['/myaccount']">My Account</a>
-            <a mat-list-item [routerLink]="['/messages']">Message</a>
+            <a mat-list-item [routerLinkActive] [routerLink]="['/home']">Home</a>
+            <a mat-list-item [routerLinkActive] [routerLink]="['/myaccount']">Account</a>
+            <!-- <a mat-list-item [routerLink]="['/messages']">Message</a> -->
 
-            <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
 
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
 
       <!-- nav -->
-      <nav class="navbar navbar-expand-md navbar-light" >
+      <nav class="navbar navbar-expand-md navbar-light navbar-inner" >
 
         <div class="navbar-header">
           
           <button mat-icon-button>
-            <i class="material-icons" (click)="sidenav.toggle()">people_outline</i>
+            <i class="material-icons" (click)="sidenav.toggle()">near_me</i>
           </button>
           <a class="navbar-brand" [routerLink]="['/home']" >{{name | titlecase}}</a>
           <button mat-icon-button class="navbar-toggler brand" 
@@ -36,12 +36,15 @@
             <li class="nav-item " >
 
               <div ngbDropdown>
-                <a class="nav-link"  id="dropdown1" ngbDropdownToggle>Musics</a>
+                <a class="nav-link"  id="dropdown1" ngbDropdownToggle>Languages</a>
                 <div ngbDropdownMenu aria-labelledby="dropdown1">
-                  <button ngbDropdownItem> Action 1</button>
-                  <button ngbDropdownItem> Action 2</button>
+                  <button ngbDropdownItem> English</button>
+                  <button ngbDropdownItem> Chinese</button>
                 </div>
               </div>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="#">About</a>
             </li>
             
           </ul>

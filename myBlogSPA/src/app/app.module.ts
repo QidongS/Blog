@@ -17,7 +17,7 @@ import {
  } from '@angular/material';
 import { JwtModule } from '@auth0/angular-jwt';
 
-
+import {NgxPaginationModule} from 'ngx-pagination';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { ValueComponent } from './value/value.component';
@@ -73,6 +73,7 @@ export function tokenFetcher(){
       CollapseModule.forRoot(),
       CarouselModule.forRoot(),
       NgxLoadingModule.forRoot({}),
+      NgxPaginationModule,
       BrowserAnimationsModule,
       AppRoutingModule,
       MatSidenavModule,

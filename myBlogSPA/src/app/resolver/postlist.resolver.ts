@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Resolve, ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Post } from '../shared/models/Post';
 import { AlertifyService } from '../services/alertify.service';
@@ -13,14 +13,14 @@ export class PostListResolver implements Resolve<Post[]> {
 
     constructor(
         private postService: PostService,
-        private router: Router,
-        private alertify: AlertifyService
+        private alertify: AlertifyService,
         ){}
 
     resolve(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<Post[]> {
+        //console.log("resolver"+route.params.page);
         if(route.params.id!=null){
             this.pageNumber = route.params.id;
         }

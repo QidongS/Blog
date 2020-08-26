@@ -18,7 +18,7 @@ import { PostResolver} from './resolver/post.resolver';
 
 export const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home'},
-    { path: 'home', component: HomeComponent, resolve: {postlist: PostListResolver}},
+    { path: 'home', component: HomeComponent},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
     { path: 'messages', component: MessagesComponent, canActivate: [AuthGuard]},
@@ -26,8 +26,8 @@ export const appRoutes: Routes = [
     { path: 'myaccount', component: MyaccountComponent, canActivate: [AuthGuard], canDeactivate:[PreventUnsavedGuard]},
     { path: 'profile/:id', component: ProfileComponent, resolve: { user: UserResolver}},
     { path: 'topics', component: TopicsComponent},
-    { path: 'page/1', pathMatch: 'full', redirectTo: 'home'},
-    { path: 'page/:id', component: HomeComponent, resolve: {post: PostListResolver}},
+    // { path: 'page/1', redirectTo: 'home'},
+    // { path: 'page/:id', component: HomeComponent, resolve: {post: PostListResolver}},
     { path: 'post/:id', component: PostComponent, resolve: {post: PostResolver}},
     { path: '**',  pathMatch: 'full', redirectTo: 'home' }
 

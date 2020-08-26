@@ -23,9 +23,8 @@ namespace myBlog.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(int id){
             var post = await this.postRepository.Get(id);
-            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-            post.Content= Markdown.ToHtml(post.Content);
-            
+            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().ConfigureNewLine("\r\n").Build();
+            post.Content= Markdown.ToHtml(post.Content, pipeline);
             return Ok(post);
         }
 
@@ -49,12 +48,12 @@ namespace myBlog.API.Controllers
                 s = await reader.ReadToEndAsync();
             }
 
-            post.PostId = 3;
+            post.PostId = 7;
             post.UserId = 0;
-            post.Title = "Second Post";
+            post.Title = "third Post";
             post.Likes = 0;
             post.Content = s;
-            post.Post_time=new DateTime(2020, 8, 2, 8, 30, 52);
+            post.Post_time=new DateTime(2020, 8, 5, 8, 30, 52);
             
             
             postRepository.Add(post);

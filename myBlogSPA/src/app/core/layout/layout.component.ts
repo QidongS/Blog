@@ -23,7 +23,7 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.name = 'Myblog';
+    this.name = '';
 
   }
 
@@ -37,7 +37,7 @@ export class LayoutComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    this.name = 'Myblog';
+    this.name = '';
     this.router.navigate(['/topics']);
     console.log('logged out');
   }

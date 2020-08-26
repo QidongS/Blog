@@ -35,8 +35,9 @@ namespace myBlog.API.Helpers
 
         public static async Task<PagedList> CreateAsync(IMongoCollection<Post> source, int pageNumber, int pageSize){
             source.AsQueryable();
+            var postIdStart = (pageNumber-1)*pageSize;
             var count = await source.CountDocumentsAsync(_ => true);
-            var items = await source.Find(post => post.PostId>=(pageNumber-1)*pageSize).ToListAsync();
+            var items = await source.Find(post => post.PostId>=postIdStart && post.PostId<postIdStart+pageSize).ToListAsync();
             // source.AsQueryable<Post>().Skip((pageNumber-1)*pageSize).Take(pageSize);
             //var items = await source.Skip((pageNumber-1)*pageSize).Take(pageSize).ToListAsync();
             //Console.WriteLine((pageNumber-1)*pageSize);
