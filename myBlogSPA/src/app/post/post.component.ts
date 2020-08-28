@@ -33,7 +33,6 @@ export class PostComponent implements OnInit {
       this.post = post;
       this.post.content = this.sanitizer.sanitize(SecurityContext.HTML, this.post.content);
 
-      console.log(this.post.content);
     }, error => {
       this.alertifyService.error(error);
     });

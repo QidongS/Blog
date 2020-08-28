@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text;
 using System.Net;
+using System.Net.Sockets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -111,12 +112,48 @@ namespace myBlog.API
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+
+                //for debug 
+                // endpoints.MapGet("/", async context =>
+                // {
+                //     netWorkDebugInfo(context);
+                // });
+
+
                 endpoints.MapFallbackToController("Index", "Fallback");
             });
+        }
+
+        public  async void netWorkDebugInfo(HttpContext context){
+            context.Response.ContentType = "text/plain";
+
+                    // Host info
+                    var name = Dns.GetHostName(); // get container id
+                    var ip = Dns.GetHostEntry(name).AddressList.FirstOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork);
+                    Console.WriteLine($"Host Name: { Environment.MachineName} \t {name}\t {ip}");
+                    await context.Response.WriteAsync($"Host Name: {Environment.MachineName}{Environment.NewLine}");
+                    await context.Response.WriteAsync(Environment.NewLine);
+
+                    // Request method, scheme, and path
+                    await context.Response.WriteAsync($"Request Method: {context.Request.Method}{Environment.NewLine}");
+                    await context.Response.WriteAsync($"Request Scheme: {context.Request.Scheme}{Environment.NewLine}");
+                    await context.Response.WriteAsync($"Request Path: {context.Request.Path}{Environment.NewLine}");
+
+                    // Headers
+                    await context.Response.WriteAsync($"Request Headers:{Environment.NewLine}");
+                    foreach (var (key, value) in context.Request.Headers)
+                    {
+                        await context.Response.WriteAsync($"\t {key}: {value}{Environment.NewLine}");
+                    }
+                    await context.Response.WriteAsync(Environment.NewLine);
+
+                    // Connection: RemoteIp
+                    await context.Response.WriteAsync($"Request Remote IP: {context.Connection.RemoteIpAddress}");
         }
     }
 }

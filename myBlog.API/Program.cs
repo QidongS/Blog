@@ -21,7 +21,7 @@ namespace myBlog.API
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://+:5003");
+                    webBuilder.UseUrls("http://+:5005");
                 });
                 
     }
