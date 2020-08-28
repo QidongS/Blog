@@ -35,6 +35,7 @@ stages:
         targetType: 'inline'
         script: |
           cd myBlogSPA
+          npm install
           ng build --prod
           
 
