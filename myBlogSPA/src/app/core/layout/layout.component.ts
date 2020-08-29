@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './layout.component.html',
   styleUrls: [
     './layout.component.scss', 
-    // '../../../assets/scss/clean-blog.min.css'
+     '../../../assets/scss/clean-blog.min.css'
   ]
 })
 export class LayoutComponent implements OnInit {

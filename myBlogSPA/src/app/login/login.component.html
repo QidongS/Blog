@@ -14,7 +14,7 @@
 	<div class="form-group">
 		<input type="password"
 		[ngClass]="{'is-invalid': loginForm.get('password').errors && loginForm.get('password').touched}" 
-		 formControlName="password" class="form-control" placeholder="Password"  >
+		 formControlName="password" class="form-control" placeholder="Password"  autocomplete="on">
 		 <div class="invalid-feedback" *ngIf="loginForm.get('password').hasError('minlength')"> A password must be at least 4 characters!</div>
 		 <div class="invalid-feedback" *ngIf="loginForm.get('password').hasError('maxlength')"> A password can not be more than 16 characters!</div>
 
