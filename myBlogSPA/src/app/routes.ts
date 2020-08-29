@@ -29,7 +29,7 @@ export const appRoutes: Routes = [
     // { path: 'page/1', redirectTo: 'home'},
     // { path: 'page/:id', component: HomeComponent, resolve: {post: PostListResolver}},
     { path: 'post/:id', component: PostComponent, resolve: {post: PostResolver}},
-    { path: '**',  pathMatch: 'full', redirectTo: 'home' }
+    { path: '**',  pathMatch: 'full', component: PageNotFoundComponent }
 
 ];
 
