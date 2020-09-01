@@ -31,14 +31,18 @@ namespace myBlog.API.Controllers
             return Ok(200);
         }
 
-        [HttpPost("register")]
+        //[HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]UserForRegisterDto userForRegister){
             //validation 
 
             userForRegister.Username = userForRegister.Username.ToLower();
+            if( userForRegister.Username.Length>20 ) {
+                return BadRequest("UserName/Password too long");
+            }
             if(await this.repository.UserExists(userForRegister.Username)){
                 return BadRequest("UserName alreay exists");
             }
+
 
             var newUser = new User{
                 Username = userForRegister.Username,
@@ -55,7 +59,7 @@ namespace myBlog.API.Controllers
             return StatusCode(201);
         }
 
-        [HttpPost("login")]
+       [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]UserForLoginDto userForLogin){
             userForLogin.Username = userForLogin.Username.ToLower();
             if(!await this.repository.UserExists(userForLogin.Username)){

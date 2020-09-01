@@ -57,7 +57,8 @@ namespace myBlog.API.Data
         }
 
         public async Task<bool> UserExists(string username){
-            if(await context.Users.AnyAsync(x => x.Username == username)){
+            
+            if(username!=null && await context.Users.AnyAsync(x => x.Username == username)){
                 return true;
             }
             return false;
