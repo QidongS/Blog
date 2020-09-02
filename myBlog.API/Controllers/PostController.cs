@@ -39,7 +39,15 @@ namespace myBlog.API.Controllers
 
             //Console.WriteLine("in post get");
             //Console.WriteLine(postParams.PageNumber.ToString(),postParams.PageSize.ToString());
+            //var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().ConfigureNewLine("\r\n").Build();
             var posts = await this.postRepository.Get(postParams);
+            
+            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().ConfigureNewLine("\r\n").Build();
+        
+            posts.postsTobeListed.ForEach(delegate(Post post){
+                post.Content= MarkdownStrip.HtmlToPlainText(Markdown.ToHtml(post.Content, pipeline)).TrimStart().Substring(0,50);
+            });
+            
             Response.AddPagination(posts.CurrentPage,posts.PageSize,Convert.ToInt32( posts.TotalCount),posts.TotalPages);
 
             return Ok(posts.postsTobeListed);
@@ -47,7 +55,7 @@ namespace myBlog.API.Controllers
 
        
         [HttpPost("{id}")]
-        public async Task<IActionResult> Add(int id, [FromQuery(Name = "title")] string title){
+        public async Task<IActionResult> Add(int id, [FromQuery(Name = "title")] string title, [FromQuery(Name = "date")] int date=1){
             Post post = new Post();
             var postpath = Configuration.GetSection("PostPath").Get<string[]>()[0];
             postpath += "note" + (id+1) + ".md";
@@ -77,7 +85,7 @@ namespace myBlog.API.Controllers
             post.Title = title==null ? new StringReader(content).ReadLine() : title;
             post.Likes = 0;
             post.Content = content;
-            post.Post_time=new DateTime(2020, 8, 10, 8, 30, 52);
+            post.Post_time=new DateTime(2020, 8, date, 0, 0, 0);
             
             
             postRepository.Add(post);

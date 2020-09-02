@@ -17,7 +17,7 @@ namespace myBlog.TEST.Core
         public void PostFetch()
         {
 
-            Assert.pass();
+            Assert.Pass();
         }
         
     }
