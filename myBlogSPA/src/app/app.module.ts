@@ -43,6 +43,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from './services/user.service';
 import { PreventUnsavedGuard } from './guards/prevent-unsaved.guard';
 import { NgxLoadingModule } from 'ngx-loading';
+import { TagComponent } from './tag/tag.component';
 
 export function tokenFetcher(){
    return localStorage.getItem('token');
@@ -63,7 +64,8 @@ export function tokenFetcher(){
       HeaderComponent,
       MyaccountComponent,
       PostComponent,
-      PageNotFoundComponent
+      PageNotFoundComponent,
+      TagComponent
    ],
    imports: [
       BrowserModule,

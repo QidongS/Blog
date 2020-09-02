@@ -56,7 +56,7 @@
 <div class="container " *ngIf="this.posts!=null&&this.pagination!=null">
   <div class="row">
     <div class="col-lg-9 col-md-12 ">
-      <ng-container *ngFor="let postheader of this.posts">
+      <ng-container *ngFor="let postheader of this.posts.reverse()">
         <div class="post-preview">
           <a [href]="'post/'+postheader.postId">
             <h2 class="post-title">
@@ -126,12 +126,12 @@
                   
                       
           <div class="toptags-list">
-            <a rel="17" href="google.com">C#</a>
-            <a rel="17" href="google.com">Azure</a>
+            <a rel="17" [href]="'tag/'">C#</a>
+            <a rel="17" [href]="'tag/'">Azure</a>
           </div>
                   
                   <hr>
-                  <a class="card-link" href="/tags">All Tags</a>
+                  <a class="card-link" [href]="'tag/'">All Tags</a>
               </div>
           </div>
       </section>
