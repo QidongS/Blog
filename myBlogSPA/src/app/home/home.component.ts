@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
       pageNum = 1;
     }
     this.postService.getPosts(pageNum,5).subscribe((postlist)  => {
-      this.posts = postlist.result;
+      this.posts = postlist.result.reverse();
       this.pagination = postlist.pagination;
     },error=>{
       console.log(error);
